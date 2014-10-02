@@ -27,7 +27,7 @@ Dans le paneau 'Layers' (à gauche par defaut) selectionner la couche vectoriell
 
 Dans la fenêtre des propriétés, sélectioner l'onglet 'Style'. Sélectionner le rectangle montrant le style courant (paneau gauche).
 
-![images/layers_properties.png]
+![Fenêtre des propriétés de la couche](images/layers_properties.png)
 
 Changez le style pour avoir des polygone blancs avec un contour rouge de 1.5 mm. Fermer la fenêtre en cliquant sur 'OK'.
 
