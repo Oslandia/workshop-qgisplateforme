@@ -55,16 +55,34 @@ Selectionner à nouveau la couche de chantiers et lancer la commande:
 
 ```python
 for feature in iface.activeLayer().getFeatures():
-   print feature['debutchant']
+    print feature['debutchant']
 ```
 Nous utilisons la commande split() qui permet de découper une chaîne de charactère pour récupérer jour mois et années dans trois variables différentes, nous utilisons ensuite la fonction de formatage t=pour obtenir la date au format souhaité:
 
 ```python
 for feature in iface.activeLayer().getFeatures():
-   [jour, mois, annee] = feature['debutchant'].split('/')
-   print "%s/%s/%s"%(annee, mois, jour)
+    [jour, mois, annee] = feature['debutchant'].split('/')
+    print "%s/%s/%s"%(annee, mois, jour)
 ```
 
+
+```python
+iface.activeLayer().startEditing() # passe la couche en mode édition
+
+for feature in iface.activeLayer().getFeatures():
+    [jour, mois, annee] = feature['debutchant'].split('/')
+    print "%s/%s/%s"%(annee, mois, jour)
+    fid = feature.id()
+    field = feature.fieldNameIndex('debutchant')
+    iface.activeLayer().changeAttributeValue(fid, field, "%s/%s/%s"%(annee, mois, jour))
+      
+iface.activeLayer().commitChanges() # sauve les modifications de la couche et sort du mode édition
+```
+Si une erreur survient pendant l'execution, utiliser la fonction ```iface.activeLayer().roolBack()``` pour sortir du mode édition.
+
+Ouvrir la table des attributs et vérifier que les modifications ont bien été faites.
+
+Refaire la même modification pour le champ 'finchantie'
 
 
 
