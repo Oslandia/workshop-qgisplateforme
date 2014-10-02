@@ -25,5 +25,13 @@ Ouvrir le menu 'Layers' et choisir 'Add Vector Layer', cliquer sur 'Browse' et s
 
 Dans le paneau 'Layers' (à gauche par defaut) selectionner la couche vectorielle, cliquer avec le bouton de droite pour obtenir le menu contextuel et sélectionner les propriétés de la couche.
 
-Dans la fenêtre des propriétés, sélectioner l'onglet 'Style'. Sélectionner le rectangle 
+Dans la fenêtre des propriétés, sélectioner l'onglet 'Style'. Sélectionner le rectangle montrant le style courant (paneau gauche).
+
+![images/layers_properties.png]
+
+Changez le style pour avoir des polygone blancs avec un contour rouge de 1.5 mm. Fermer la fenêtre en cliquant sur 'OK'.
+
+
+
+
 
