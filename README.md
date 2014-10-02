@@ -102,6 +102,19 @@ Manipuler la molette de défilement du paneau 'Time Manager'. Que se passe-t-il 
 Ouvrir la table attributaire. Qu'observez-vous ? Ouvrir les propriétés de la couche, dans l'onglet 'General' observez le champ 'Feature subset'. Fermez les propriétés, éteindre le 'Time Manager' (bouton ON/OFF) puis réouvrir les propriétés. Que pouvez-vous en déduire sur le fonctionnemement de 'Time Manager' ?
 
 
+Adapter l'interface à nos besoins
+---------------------------------
+
+QGIS, présente une interface avec un grand nombre de fonctionalités qui est adaptés à des utilisateur SIG avancés. Cependant QGIS est aussi une plateforme qui permet de présenter au un autre type d'utilisateur, une interface adaptée à ses besoins.
+
+Supposons que ne ne somme intéressé qu'à la visualisation (pas à l'édition) des différents chantiers. Nous souhaitons pouvoir cliquer sur un chantier sur la carte et optenir les information relatives à ce chantier.
+
+Commençons par enregister le projet puisque nous allons bientôt devoir redémarrer QGIS.
+
+Dans le menu 'Settings', choisir 'Customization'. Activer la personalisation (checkbox en haut à gauche) et désactiver les éléments qui ne vous semblent pas nécessaires à la tâche. Cliquer sur 'OK', quiter QGIS puis le démarrer de nouveau.
+
+
+
 
 
 
