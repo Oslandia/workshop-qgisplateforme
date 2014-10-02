@@ -111,7 +111,17 @@ Supposons que ne ne somme intéressé qu'à la visualisation (pas à l'édition)
 
 Commençons par enregister le projet puisque nous allons bientôt devoir redémarrer QGIS.
 
-Dans le menu 'Settings', choisir 'Customization'. Activer la personalisation (checkbox en haut à gauche) et désactiver les éléments qui ne vous semblent pas nécessaires à la tâche. Cliquer sur 'OK', quiter QGIS puis le démarrer de nouveau.
+Dans le menu 'Settings', choisir 'Customization'. Activer la personalisation (checkbox en haut à gauche) et désactiver les éléments qui ne vous semblent pas nécessaires à la tâche. 
+
+*Attention* conserver le menu 'Settings' qui nous permettra de retrouver l'interface innitiale par la suite. 
+
+Cliquer sur 'OK', quiter QGIS puis le démarrer de nouveau.
+
+
+Développer un outil spécifique
+------------------------------
+
+
 
 
 
