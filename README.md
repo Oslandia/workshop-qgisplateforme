@@ -82,7 +82,7 @@ Si aucune erreur ne survient, une liste de 'True' s'affiche, ce sont les valeurs
 
 Ouvrir la table des attributs et vérifier que les modifications ont bien été faites.
 
-Refaire la même modification pour le champ 'finchantie'
+Refaire la même modification pour le champ 'finchantie'.
 
 
 L'extension TimeManager
@@ -90,7 +90,16 @@ L'extension TimeManager
 
 Dans le menu 'Plugins' sélectionner 'Manage and install plugins'. Dans le champ 'Search' taper 'Time', sélectionner le plugin 'TimeManager' lisez la déscription du plugin en portant une attention particulière aux différents éléments présents (Titre, auteur etc.). Cliquer sur 'Install Plugin' puis sur 'Close'.
 
-Dans le paneau qui vient d'apparaître, cliquer sur 'Settings' et dans la fenètre 'Time manager settings' cliquer sur 'Add layer'.
+Dans le paneau 'Time Manager', cliquer sur 'Settings' et dans la fenètre 'Time manager settings' cliquer sur 'Add Layer' puis reseigner les champs:
+* Start Time : debutchant
+* End Time : finchantie
+puis cliquer sur 'OK'.
+
+Manipuler la molette de défilement du paneau 'Time Manager'. Que se passe-t-il ? 
+
+![Paneau de TimeManager](images/time_manager_panel.png)
+
+Ouvrir la table attributaire. Qu'observez-vous ? Ouvrir les propriétés de la couche, dans l'onglet 'General' observez le champ 'Feature subset'. Fermez les propriétés, éteindre le 'Time Manager' (bouton ON/OFF) puis réouvrir les propriétés. Que pouvez-vous en déduire sur le fonctionnemement de 'Time Manager' ?
 
 
 
