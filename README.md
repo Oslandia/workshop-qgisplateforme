@@ -121,6 +121,20 @@ Cliquer sur 'OK', quiter QGIS puis le démarrer de nouveau.
 Développer un outil spécifique
 ------------------------------
 
+Comme nous l'avons vu avec l'extension 'TimeManager', QGIS offre la possibilité de développer des extensions dédiées à des tâches spécifique.
+
+Poursuivons notre exemple. Nous ne nous intéssons qu'au nom du chantier, sa date de début et sa date de fin. Nous souhaitons qu'un utlisateur puisse:
+* naviguer sur la carte, 
+* choisir un chantier avec la souris
+* modifier la date de début et la date de fin du chantier
+
+Pour celà nous allons développer une extension simple.
+
+Commençons par répasser à l'interface par défaut en ouvrant la fenêtre 'Customization' et en désactivant la personalisation. Il faut redémarer QGIS.
+
+L'extension 'Plugin Builder' va nous aider en nous fournissant une trame pour construire notre extension. Dans le menu 'Plugins' sélectionner 'Manage and install plugins'. Installer l'extension 'Plugin Builder'. Fermer le gestionaire d'extensions. Dans le menu 'Plugins' choisir 'Plugin Builder'->'Plugin Builder'.
+
+
 
 
 
