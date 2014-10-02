@@ -71,7 +71,6 @@ iface.activeLayer().startEditing() # passe la couche en mode édition
 
 for feature in iface.activeLayer().getFeatures():
     [jour, mois, annee] = feature['debutchant'].split('/')
-    print "%s/%s/%s"%(annee, mois, jour)
     fid = feature.id()
     field = feature.fieldNameIndex('debutchant')
     iface.activeLayer().changeAttributeValue(fid, field, "%s/%s/%s"%(annee, mois, jour))
@@ -83,6 +82,14 @@ Si une erreur survient pendant l'execution, utiliser la fonction ```iface.active
 Ouvrir la table des attributs et vérifier que les modifications ont bien été faites.
 
 Refaire la même modification pour le champ 'finchantie'
+
+
+L'extension TimeManager
+-----------------------
+
+Dans le menu 'Plugins' sélectionner 'Manage and install plugins'. Dans le champ 'Search' taper 'Time', sélectionner le plugin 'TimeManager' lisez la déscription du plugin en portant une attention particulière aux différents éléments présents (Titre, auteur etc.). Cliquer sur 'Install Plugin'.
+
+
 
 
 
