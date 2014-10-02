@@ -1,5 +1,5 @@
-workshop-qgisplateform
-======================
+QGIS comme plateforme
+=====================
 
 
 Télécharger les données
