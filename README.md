@@ -154,32 +154,6 @@ Ce plugin a aussi besoin d'un script python qui contient l'icone (incon.png). Ce
 
     pyrcc4 resources.qrc > resources_rc.py
 
-
-<!---
-Comme nous n'aurons pas besoin d'icône, nous pouvons supprimer:
-* le fichier icon.png
-* le fichier ressources.qrc
-Il nous faut aussi éditer le fichier maclasse.py et supprimer les lignes:
-
-```python
-# Initialize Qt resources from file resources.py
-import resources_rc
-```
-et remplacer:
-
-```python
-self.action = QAction(
-    QIcon(":/plugins/workshopplugin/icon.png"),
-    u"run", self.iface.mainWindow())
-```
-par:
-
-```python
-self.action = QAction(u"run", self.iface.mainWindow())
-```
---->
-
-
 Redémarrer QGIS. Ouvrir le gestionaire d'extensions et vérifier que votre extension est installée et activée. Observer la page de documentation de votre extension. Qu'y retrouve-t-in ?
 
 Dans le menu 'Plugins' trouver l'entrée correspondant à votre plugin et cliquer sur 'run'.
@@ -251,9 +225,26 @@ Ajouter la fonction `handleMouseDown` qui réagit à l'émission du signal par n
 
 Noter la dernière ligne qui réactive l'outil pan/zoom une fois la boîte de dialogue fermée.
 
+Recharger l'extension (touche F5) et tester.
 
 
+## Modifier l'interface graphique
 
+Notre boîte de dialogue ne contient pour l'instant que deux boutons, nous souhaitons ajouter des champs éditables contenant la date de début et la date de fin du chantier. Pour celà nous alons modifier notre interface graphique avec Qt-Designer.
+
+Dans une fenêtre de commande, aller dans le répertoire $HOME/.qgsi2/python/plugins et lancer la commande:
+
+    designer ui_workshopplugin.ui
+
+Ajouter les champs éditables et les étiquettes. Modifier le nom des champs éditables pour pouvoir s'y référer plus facilement dans nos fonctions. Sauver et quiter.
+
+![Modifier l'interface garphique](images/designer.png)
+
+Il faut ensuite régénerer le fichier ui_interface_graphique.py.
+
+    pyuic4 interface_graphique.ui > ui_interface_graphique.py
+
+Recharger l'extension dans QGIS (F5), tester.
 
 
 
