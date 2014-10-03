@@ -1,6 +1,10 @@
 QGIS comme plateforme
 =====================
 
+QGIS, présente une interface avec un grand nombre de fonctionalités qui sont adapteés à des utilisateur SIG avancés. Cependant QGIS est aussi une plateforme qui permet de présenter au un autre type d'utilisateur, une interface adaptée à ses besoins.
+
+Dans ce court tutoriel, deux heures environ, nous faisons un tour d'horizon de quelques une des fonctionnalités de QGIS qui permettent ce type de personalisation.
+
 
 Télécharger les données
 -----------------------
@@ -104,8 +108,6 @@ Ouvrir la table attributaire. Qu'observez-vous ? Ouvrir les propriétés de la c
 
 Adapter l'interface à nos besoins
 ---------------------------------
-
-QGIS, présente une interface avec un grand nombre de fonctionalités qui est adaptés à des utilisateur SIG avancés. Cependant QGIS est aussi une plateforme qui permet de présenter au un autre type d'utilisateur, une interface adaptée à ses besoins.
 
 Supposons que ne ne somme intéressé qu'à la visualisation (pas à l'édition) des différents chantiers. Nous souhaitons pouvoir cliquer sur un chantier sur la carte et optenir les information relatives à ce chantier.
 
