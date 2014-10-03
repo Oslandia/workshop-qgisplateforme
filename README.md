@@ -19,7 +19,7 @@ Ouvrir le menu 'Layers' et choisir 'Add WMS/WMTS Layer'. Dans la boite de dialog
 * Name: Grand Lyon
 * URL: https://download.data.grandlyon.com/wms/grandlyon
 
-Cliquer sur 'connect' et sellectioner la couche 'Plan guide du Grand Lyon'. Clicker sur 'Add'puis 'Close'.
+Cliquer sur 'connect' et sellectioner la couche 'Plan guide du Grand Lyon'. Clicker sur 'Add' puis 'Close'.
 
 ### Couche vectorielle
 
@@ -150,18 +150,21 @@ Ce plugin a besoin pour fonctionner d'un script python (extension .py) contenant
 
     pyuic4 interface_graphique.ui > ui_interface_graphique.py
 
-Ce plugin a aussi besoin d'un script python qui contient l'icone (incon.png). Ce fichier est appelé fichier ressource et est généré à partir d'un fichier qui liste les éléments à utiliser comme ressource (extension .qrc) à l'aide du programme pyrcc4. 
+Ce plugin a aussi besoin d'un script python qui contient l'icone (incon.png). Ce fichier est appelé fichier ressource et est généré à partir d'un fichier qui liste les éléments à utiliser comme ressource (extension .qrc) à l'aide du programme pyrcc4:
 
+    pyrcc4 resources.qrc > resources_rc.py
+
+
+<!---
 Comme nous n'aurons pas besoin d'icône, nous pouvons supprimer:
 * le fichier icon.png
 * le fichier ressources.qrc
-Il nous faut aussi éditer le fichier lenomdemaclasse.py et supprimer les lignes:
+Il nous faut aussi éditer le fichier maclasse.py et supprimer les lignes:
 
 ```python
 # Initialize Qt resources from file resources.py
 import resources_rc
 ```
-
 et remplacer:
 
 ```python
@@ -169,12 +172,92 @@ self.action = QAction(
     QIcon(":/plugins/workshopplugin/icon.png"),
     u"run", self.iface.mainWindow())
 ```
-
 par:
 
 ```python
 self.action = QAction(u"run", self.iface.mainWindow())
 ```
+--->
+
+
+Redémarrer QGIS. Ouvrir le gestionaire d'extensions et vérifier que votre extension est installée et activée. Observer la page de documentation de votre extension. Qu'y retrouve-t-in ?
+
+Dans le menu 'Plugins' trouver l'entrée correspondant à votre plugin et cliquer sur 'run'.
+
+
+## Que se passe-t-il ?
+
+Ouvrir le fichier maclasse.py. C'est là que se trouve la logique de votre extension.
+
+Lors du lancement de QGIS une instance de la classe définie dans maclasse.py est construite.Dit autrement, un objet python du type MaClasse est inititialisé en appelant la fonction `__init__` de la classe. On peut notament voir, à la fin de cette fonction, la création de l'interface graphique du plugin `self.dlg = ...` (cette interface n'est pas visible à ce moment.
+
+La fonction `initGui` est appelée par QGIS une fois que l'interface graphique de QGIS est en place mais avant que les couches soient chargées. On peut voir que, dans notre cas, on crée une action qui, une fois déclanchée, va appeler la fonction `run` de MaClasse (`self.action.triggered.connect(self.run)`). Cette action est ensuite rendue accessible dans la barre d'outil et dans le menu 'Plugins'.
+
+La fonction `run` montre la boîte de dialogue (`self.dlg.show`) et l'execute (`self.dlg.exec_()`).
+
+La fonction `unload` est appelée lorsque l'on désactive l'extension:
+* soit dans le gestonaire d'extensions, 
+* soit lors de la fermeture de QGIS, 
+* soit lors du rechargement de l'extension avec 'PluginReloader'.
+
+
+## Réagir au clic sur la carte
+
+Nous souhaitons avoir un outil qui affiche et permet de modifier les dates de début et de fin du chantier sélectionné par un clic sur la carte. Pour celà nous utilisons un objet de type `QgsMapToolEmitPoint` qui va générer un signal à chaque clic sur la carte.
+
+Commençons par configurer 'Plugin Reloader' pour qu'il recharge notre extension. Dans le menu 'Plugins'->'Plugin Reloader'->'Choose plugin to reload' et sélectioner notre extension pui 'OK'. Désormais, chaque fois que l'on appuie sur la touche F5 du clavier, la fonction `unload` de MaClasse est appelée, les fichiers .py décrivant notre extension sont relus, puis les fonction `__init__` et `initGui` sont appellées.
+
+Ouvrir le fichier maclasse.py et ajouter à la fonction `__init__` les lignes suivantes. *Attention* python est sensible à l'indentation, il faut donc aligner les lignes ajoutées avec la dernière ligne de la fonction `__init__`:
+
+```python
+        self.canvas = self.iface.mapCanvas()
+        self.clickTool = QgsMapToolEmitPoint(self.canvas)
+        self.clickTool.canvasClicked.connect(self.handleMouseDown)
+```
+Noter la connection du signal `canvasClicked` à la fonction `handleMouseDown` de MaClasse que nous allons devoir définir.
+
+Il faut aussi ajouter, après la ligne `from qgis.core import *` la ligne:
+
+```python
+from qgis.gui import *
+```
+
+Car l'outil 'QgsMapToolEmitPoint' est défini dans les modules qgis relatifs à l'interface graphique (`gui`).
+
+
+Pour que notre outil `clickTool` devienne l'outil courant lorsque l'on déclanche l'action de notre extension, remplacer la fonction `run` par:
+
+```python
+    def run(self):
+        self.canvas.setMapTool(self.clickTool)
+```
+
+Ajouter la fonction `handleMouseDown` qui réagit à l'émission du signal par notre outil de clic:
+
+```python
+    def handleMouseDown(self, point, button):
+        # show the dialog
+        self.dlg.show()
+        # Run the dialog event loop
+        result = self.dlg.exec_()
+        # See if OK was pressed
+        if result == 1:
+            # do something useful (delete the line containing pass and
+            # substitute with your code)
+            pass
+
+        self.iface.actionPan().trigger()
+```
+
+Noter la dernière ligne qui réactive l'outil pan/zoom une fois la boîte de dialogue fermée.
+
+
+
+
+
+
+
+
 
 
 
