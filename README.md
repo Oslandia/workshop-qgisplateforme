@@ -247,10 +247,45 @@ Il faut ensuite régénerer le fichier ui_interface_graphique.py.
 Recharger l'extension dans QGIS (F5), tester.
 
 
+## Terminer l'extension
 
+Il nous faut maintenant modifier notre fonction `handleMouseDown` pour y afficher le début et la fin du chantier et les modifier dans la couche si l'utilisateur appuie sur 'OK'. La fonction `handleMouseDown` devrait alors ressembler à cela:
 
+```python
+    def handleMouseDown(self, point, button):
 
+        # we assume one vector layer and optionnally a second layer that is not a vector layer
+        layers = [layer for layerId, layer in QgsMapLayerRegistry.instance().mapLayers().iteritems()]
+        layer = layers[0] if isinstance(layers[0], QgsVectorLayer) else layers[1]
+       
+        # we create a rectangle of 2 pixels around the point 
+        # and select the first feature in this rectangle
+        nbPixels = 2
+        pointGeometry = QgsGeometry.fromPoint(point)
+        pointBuffer = pointGeometry.buffer( (self.canvas.mapUnitsPerPixel() * nbPixels),0)
+        rectangle = pointBuffer.boundingBox()
+        features = layer.getFeatures( QgsFeatureRequest(rectangle))
 
+        for feature in features:
+            self.dlg.ui.lineEditDebut.setText(feature['debutchant'])
+            self.dlg.ui.lineEditFin.setText(feature['finchantie'])
+              
+            # show the dialog
+            self.dlg.show()
+            # Run the dialog event loop
+            result = self.dlg.exec_()
+            # See if OK was pressed
+            if result == 1:
+                fid = feature.id()
+                field = feature.fieldNameIndex('debutchant')
+                layer.changeAttributeValue(fid, field, self.dlg.ui.lineEditDebut.text())
+                field = feature.fieldNameIndex('finchantie')
+                layer.changeAttributeValue(fid, field, self.dlg.ui.lineEditFin.text())
+
+        self.iface.actionPan().trigger()
+```
+
+Recharger l'extension et tester.
 
 
 
