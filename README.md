@@ -236,7 +236,7 @@ Dans une fenêtre de commande, aller dans le répertoire $HOME/.qgsi2/python/plu
 
     designer ui_workshopplugin.ui
 
-Ajouter les champs éditables et les étiquettes. Modifier le nom des champs éditables pour pouvoir s'y référer plus facilement dans nos fonctions. Sauver et quiter.
+Ajouter les champs éditables et les étiquettes. Modifier le nom des champs éditables par lineEditDebut et lineEditFin pour pouvoir s'y référer plus facilement dans nos fonctions. Sauver et quiter.
 
 ![Modifier l'interface garphique](images/designer.png)
 
