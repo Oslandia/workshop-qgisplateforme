@@ -132,7 +132,57 @@ Pour celà nous allons développer une extension simple.
 
 Commençons par répasser à l'interface par défaut en ouvrant la fenêtre 'Customization' et en désactivant la personalisation. Il faut redémarer QGIS.
 
-L'extension 'Plugin Builder' va nous aider en nous fournissant une trame pour construire notre extension. Dans le menu 'Plugins' sélectionner 'Manage and install plugins'. Installer l'extension 'Plugin Builder'. Fermer le gestionaire d'extensions. Dans le menu 'Plugins' choisir 'Plugin Builder'->'Plugin Builder'.
+L'extension 'Plugin Builder' va nous aider en nous fournissant une trame pour construire notre extension. Dans le menu 'Plugins' sélectionner 'Manage and install plugins'. Installer l'extension 'Plugin Builder'. Installer aussi l'extension 'Plugin Reloader'.
+
+Fermer le gestionaire d'extensions. Dans le menu 'Plugins' choisir 'Plugin Builder'->'Plugin Builder'.
+
+![Fenêtre de création de plugin de Plugin Builder](images/plugin_builder.png)
+
+Lire la documentation (à gauche) et remplir les champs (à droite) en conséquence. Cliquer sur 'OK' et sellectionner le répertoire $HOME/.qgsi2/python/plugins pour sauver le plugin. Lire les explications dans le fenêtre de résultat qui s'affiche ensuite.
+
+Ouvrir un gestionaire de fichier et explorer le répertoire $HOME/.qgsi2/python/plugins/LeNomDeMonPlugin.
+
+Redémarrer QGIS.
+
+Ouvrir le gestionaire d'extensions et essayer d'activer votre extension. Lisez le message d'erreur ! 
+
+Ce plugin a besoin pour fonctionner d'un script python (extension .py) contenant l'interface graphique du plugin. Ce fichier est généré à partir du fichier de description de l'interface graphique (extension .ui) avec le programme pyuic4. Ouvrir une fenêtre de commande, aller dans le répertoire $HOME/.qgsi2/python/plugins/LeNomDeMonPlugin et executer la commande:
+
+    pyuic4 interface_graphique.ui > ui_interface_graphique.py
+
+Ce plugin a aussi besoin d'un script python qui contient l'icone (incon.png). Ce fichier est appelé fichier ressource et est généré à partir d'un fichier qui liste les éléments à utiliser comme ressource (extension .qrc) à l'aide du programme pyrcc4. 
+
+Comme nous n'aurons pas besoin d'icône, nous pouvons supprimer:
+* le fichier icon.png
+* le fichier ressources.qrc
+Il nous faut aussi éditer le fichier lenomdemaclasse.py et supprimer les lignes:
+
+```python
+# Initialize Qt resources from file resources.py
+import resources_rc
+```
+
+et remplacer:
+
+```python
+self.action = QAction(
+    QIcon(":/plugins/workshopplugin/icon.png"),
+    u"run", self.iface.mainWindow())
+```
+
+par:
+
+```python
+self.action = QAction(u"run", self.iface.mainWindow())
+```
+
+
+
+
+
+
+
+
 
 
 
