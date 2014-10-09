@@ -126,7 +126,7 @@ Ouvrir les propriétés de la couche des chantier.
 
 Aller dans l'onglet 'Fields' et selectionner 'Drag and drop designer' comme type d'éditeur d'attributs. Créer un onglet intitulé Début/Fin et ajouter les champs 'debutchant' et 'finchantie'. Cliquer sur 'OK'.
 
-Nous utilisons l'outil identify (flèche 1 sur la figure ci-dessous) pour ouvrir notre automatiquement notre formulaire lorsque. Il suffit de passer en mode édition (flèche 4) pour pouvoir modifier les valeurs.
+Nous utilisons l'outil identify (flèche 1 sur la figure ci-dessous) pour ouvrir notre automatiquement notre formulaire lorsque l'utilsateur clique sur une géométrie (flèche 3). Il suffit de passer en mode édition (flèche 4) pour pouvoir modifier les valeurs.
 
 ![Ouverture du formulaire d'édition d'attributs avec l'outil 'Identify'.](images/custom_form_on_identify.png)
 
