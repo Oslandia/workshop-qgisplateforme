@@ -1,6 +1,10 @@
 QGIS comme plateforme
 =====================
 
+QGIS, présente une interface avec un grand nombre de fonctionalités qui sont adapteés à des utilisateur SIG avancés. Cependant QGIS est aussi une plateforme qui permet de présenter au un autre type d'utilisateur, une interface adaptée à ses besoins.
+
+Dans ce court tutoriel, deux heures environ, nous faisons un tour d'horizon de quelques une des fonctionnalités de QGIS qui permettent ce type de personalisation.
+
 
 Télécharger les données
 -----------------------
@@ -250,7 +254,7 @@ Dans une fenêtre de commande, aller dans le répertoire $HOME/.qgsi2/python/plu
 
     designer ui_workshopplugin.ui
 
-Ajouter les champs éditables et les étiquettes. Modifier le nom des champs éditables pour pouvoir s'y référer plus facilement dans nos fonctions. Sauver et quiter.
+Ajouter les champs éditables et les étiquettes. Modifier le nom des champs éditables par lineEditDebut et lineEditFin pour pouvoir s'y référer plus facilement dans nos fonctions. Sauver et quiter.
 
 ![Modifier l'interface garphique](images/designer.png)
 
