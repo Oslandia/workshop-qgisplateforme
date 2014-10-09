@@ -107,13 +107,32 @@ Adapter l'interface à nos besoins
 
 QGIS, présente une interface avec un grand nombre de fonctionalités qui est adaptés à des utilisateur SIG avancés. Cependant QGIS est aussi une plateforme qui permet de présenter au un autre type d'utilisateur, une interface adaptée à ses besoins.
 
-Supposons que ne ne somme intéressé qu'à la visualisation (pas à l'édition) des différents chantiers. Nous souhaitons pouvoir cliquer sur un chantier sur la carte et optenir les information relatives à ce chantier.
+Supposons que l'utilisateur ne s'intéresse qu'à la date de début et la date de fin du chantier. Ce utilisateur souhaite:
+* naviguer sur la carte, 
+* choisir un chantier avec la souris
+* modifier la date de début et la date de fin
 
-Commençons par enregister le projet puisque nous allons bientôt devoir redémarrer QGIS.
+Commençons par enregister le projet puisque nous allons devoir redémarrer QGIS.
+
+### Formulaire personalisé
+
+Ouvrir les propriétés de la couche des chantier.
+
+![Editeur d'attributs personalisé.](images/custom_attribute_editor.png)
+
+Aller dans l'onglet 'Fields' et selectionner 'Drag and drop designer' comme type d'éditeur d'attributs. Créer un onglet intitulé Début/Fin et ajouter les champs 'debutchant' et 'finchantie'. Cliquer sur 'OK'.
+
+Nous utilisons l'outil identify (flèche 1 sur la figure ci-dessous) pour ouvrir notre automatiquement notre formulaire lorsque. Il suffit de passer en mode édition (flèche 4) pour pouvoir modifier les valeurs.
+
+![Ouverture du formulaire d'édition d'attributs avec l'outil 'Identify'.](images/custom_form_on_identify.png)
+
+### Interface personalisée
+
+Finalement nous pouvons dépouiller l'interface de tout ce qui n'intéresse pas l'utilisateur.
 
 Dans le menu 'Settings', choisir 'Customization'. Activer la personalisation (checkbox en haut à gauche) et désactiver les éléments qui ne vous semblent pas nécessaires à la tâche. 
 
-*Attention* conserver le menu 'Settings' qui nous permettra de retrouver l'interface innitiale par la suite. 
+*Attention* conserver le menu 'Settings' qui nous permettra de retrouver l'interface innitiale par la suite, conserver aussi l'outil 'Identify', le bouton pour passer en mode édition et le bouton 'Pan'. 
 
 Cliquer sur 'OK', quiter QGIS puis le démarrer de nouveau.
 
@@ -123,12 +142,7 @@ Développer un outil spécifique
 
 Comme nous l'avons vu avec l'extension 'TimeManager', QGIS offre la possibilité de développer des extensions dédiées à des tâches spécifique.
 
-Poursuivons notre exemple. Nous ne nous intéssons qu'au nom du chantier, sa date de début et sa date de fin. Nous souhaitons qu'un utlisateur puisse:
-* naviguer sur la carte, 
-* choisir un chantier avec la souris
-* modifier la date de début et la date de fin du chantier
-
-Pour celà nous allons développer une extension simple.
+Pour l'exmple, nous nous intéressons au même problème que précédement: l'utilisateur veut sélectionner un chantier à la souris et éditer sa date de début et sa date de fin. Cette fois nous allons le résoudre en développant une extension simple.
 
 Commençons par répasser à l'interface par défaut en ouvrant la fenêtre 'Customization' et en désactivant la personalisation. Il faut redémarer QGIS.
 
