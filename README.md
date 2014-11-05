@@ -3,7 +3,7 @@ QGIS comme plateforme
 
 QGIS, présente une interface avec un grand nombre de fonctionalités qui sont adapteés à des utilisateur SIG avancés. Cependant QGIS est aussi une plateforme qui permet de présenter au un autre type d'utilisateur, une interface adaptée à ses besoins.
 
-Dans ce court tutoriel, deux heures environ, nous faisons un tour d'horizon de quelques une des fonctionnalités de QGIS qui permettent ce type de personalisation.
+Dans ce court tutoriel, deux heures environ, nous faisons un tour d'horizon de quelques une des fonctionnalités de QGIS qui permettent ce type de personnalisation.
 
 
 Télécharger les données
@@ -41,7 +41,7 @@ Changez le style pour avoir des polygone blancs avec un contour rouge de 1.5 mm.
 Modifier le format des dates
 ----------------------------
 
-Le fonctions de QGIS sont accessibles en python, ce qui permet de créer des extensions ou d'effectuer des traitements sur les données. Nous souhaitons changer le format des dates et transformer jj/mm/aaaa en aaaa/mm/jj afin de pouvoir utiliser l'extension TimeManager qui ne supporte pas le format.
+Les fonctions de QGIS sont accessibles en python, ce qui permet de créer des extensions ou d'effectuer des traitements sur les données. Nous souhaitons changer le format des dates et transformer jj/mm/aaaa en aaaa/mm/jj afin de pouvoir utiliser l'extension TimeManager qui ne supporte pas le format.
 
 Sélectioner la couche des chantiers, ouvrir le menu contextuel (click droit) et selectionner la table des attributs. Observer les champs 'debutchant' et 'finchantie'. Fermer la tables des attributs.
 
@@ -53,7 +53,7 @@ Dans le menu 'Plugins' sélectioner la console python. Dans la console pythin, e
 iface.activeLayer()
 ```
     
-Qu'observez-vous? Sélectioner le fond de plan et relancer la commande (vous pouvez rapeller la dernière comande avec la touche flèche vers le haut).
+Qu'observez-vous? Sélectioner le fond de plan et relancer la commande (vous pouvez rappeler la dernière comande avec la touche flèche vers le haut).
 
 Selectionner à nouveau la couche de chantiers et lancer la commande:
 
@@ -61,7 +61,8 @@ Selectionner à nouveau la couche de chantiers et lancer la commande:
 for feature in iface.activeLayer().getFeatures():
     print feature['debutchant']
 ```
-Nous utilisons la commande split() qui permet de découper une chaîne de charactère pour récupérer jour mois et années dans trois variables différentes, nous utilisons ensuite la fonction de formatage t=pour obtenir la date au format souhaité:
+
+Nous utilisons la commande split() qui permet de découper une chaîne de charactère pour récupérer jour mois et années dans trois variables différentes, nous utilisons ensuite la fonction de formatage pour obtenir la date au format souhaité:
 
 ```python
 for feature in iface.activeLayer().getFeatures():
@@ -82,7 +83,7 @@ for feature in iface.activeLayer().getFeatures():
 
 iface.activeLayer().commitChanges() # sauve les modifications de la couche et sort du mode édition
 ```
-Si aucune erreur ne survient, une liste de 'True' s'affiche, ce sont les valeurs de retour des fonction starEditing, changeAttributeValue et commitChanges. Si une erreur survient pendant l'execution, utiliser la fonction ```iface.activeLayer().rollBack()``` pour sortir du mode édition.
+Si aucune erreur ne survient, une liste de 'True' s'affiche, ce sont les valeurs de retour des fonction startEditing, changeAttributeValue et commitChanges. Si une erreur survient pendant l'execution, utiliser la fonction ```iface.activeLayer().rollBack()``` pour sortir du mode édition.
 
 Ouvrir la table des attributs et vérifier que les modifications ont bien été faites.
 
@@ -92,9 +93,9 @@ Refaire la même modification pour le champ 'finchantie'.
 L'extension TimeManager
 -----------------------
 
-Dans le menu 'Plugins' sélectionner 'Manage and install plugins'. Dans le champ 'Search' taper 'Time', sélectionner le plugin 'TimeManager' lisez la déscription du plugin en portant une attention particulière aux différents éléments présents (Titre, auteur etc.). Cliquer sur 'Install Plugin' puis sur 'Close'.
+Dans le menu 'Plugins' sélectionner 'Manage and install plugins'. Dans le champ 'Search' taper 'Time', sélectionner le plugin 'TimeManager' lisez la description du plugin en portant une attention particulière aux différents éléments présents (Titre, auteur etc.). Cliquer sur 'Install Plugin' puis sur 'Close'.
 
-Dans le paneau 'Time Manager', cliquer sur 'Settings' et dans la fenètre 'Time manager settings' cliquer sur 'Add Layer' puis reseigner les champs:
+Dans le paneau 'Time Manager', cliquer sur 'Settings' et dans la fenètre 'Time manager settings' cliquer sur 'Add Layer' puis renseigner les champs :
 * Start Time : debutchant
 * End Time : finchantie
 puis cliquer sur 'OK'.
@@ -109,7 +110,7 @@ Ouvrir la table attributaire. Qu'observez-vous ? Ouvrir les propriétés de la c
 Adapter l'interface à nos besoins
 ---------------------------------
 
-QGIS, présente une interface avec un grand nombre de fonctionalités qui est adaptés à des utilisateur SIG avancés. Cependant QGIS est aussi une plateforme qui permet de présenter au un autre type d'utilisateur, une interface adaptée à ses besoins.
+QGIS présente une interface avec un grand nombre de fonctionalités qui est adaptée à des utilisateurs SIG avancés. Cependant QGIS est aussi une plateforme qui permet de présenter à un autre type d'utilisateur une interface adaptée à ses besoins.
 
 Supposons que l'utilisateur ne s'intéresse qu'à la date de début et la date de fin du chantier. Ce utilisateur souhaite:
 * naviguer sur la carte, 
@@ -118,23 +119,23 @@ Supposons que l'utilisateur ne s'intéresse qu'à la date de début et la date d
 
 Commençons par enregister le projet puisque nous allons devoir redémarrer QGIS.
 
-### Formulaire personalisé
+### Formulaire personnalisé
 
-Ouvrir les propriétés de la couche des chantier.
+Ouvrir les propriétés de la couche des chantiers.
 
-![Editeur d'attributs personalisé.](images/custom_attribute_editor.png)
+![Editeur d'attributs personnalisé.](images/custom_attribute_editor.png)
 
-Aller dans l'onglet 'Fields' et selectionner 'Drag and drop designer' comme type d'éditeur d'attributs. Créer un onglet intitulé Début/Fin et ajouter les champs 'debutchant' et 'finchantie'. Cliquer sur 'OK'.
+Aller dans l'onglet 'Fields' et sélectionner 'Drag and drop designer' comme type d'éditeur d'attributs. Créer un onglet intitulé Début/Fin et ajouter les champs 'debutchant' et 'finchantie'. Cliquer sur 'OK'.
 
-Nous utilisons l'outil identify (flèche 1 sur la figure ci-dessous) pour ouvrir notre automatiquement notre formulaire lorsque l'utilsateur clique sur une géométrie (flèche 3). Il suffit de passer en mode édition (flèche 4) pour pouvoir modifier les valeurs.
+Nous utilisons l'outil identify (flèche 1 sur la figure ci-dessous) pour ouvrir automatiquement notre formulaire lorsque l'utilsateur clique sur une géométrie (flèche 3). Il suffit de passer en mode édition (flèche 4) pour pouvoir modifier les valeurs.
 
 ![Ouverture du formulaire d'édition d'attributs avec l'outil 'Identify'.](images/custom_form_on_identify.png)
 
-### Interface personalisée
+### Interface personnalisée
 
 Finalement nous pouvons dépouiller l'interface de tout ce qui n'intéresse pas l'utilisateur.
 
-Dans le menu 'Settings', choisir 'Customization'. Activer la personalisation (checkbox en haut à gauche) et désactiver les éléments qui ne vous semblent pas nécessaires à la tâche. 
+Dans le menu 'Settings', choisir 'Customization'. Activer la personnalisation (checkbox en haut à gauche) et désactiver les éléments qui ne vous semblent pas nécessaires à la tâche. 
 
 *Attention* conserver le menu 'Settings' qui nous permettra de retrouver l'interface innitiale par la suite, conserver aussi l'outil 'Identify', le bouton pour passer en mode édition et le bouton 'Pan'. 
 
@@ -146,9 +147,9 @@ Développer un outil spécifique
 
 Comme nous l'avons vu avec l'extension 'TimeManager', QGIS offre la possibilité de développer des extensions dédiées à des tâches spécifique.
 
-Pour l'exmple, nous nous intéressons au même problème que précédement: l'utilisateur veut sélectionner un chantier à la souris et éditer sa date de début et sa date de fin. Cette fois nous allons le résoudre en développant une extension simple.
+Pour l'exemple, nous nous intéressons au même problème que précédement: l'utilisateur veut sélectionner un chantier à la souris et éditer sa date de début et sa date de fin. Cette fois nous allons le résoudre en développant une extension simple.
 
-Commençons par répasser à l'interface par défaut en ouvrant la fenêtre 'Customization' et en désactivant la personalisation. Il faut redémarer QGIS.
+Commençons par repasser à l'interface par défaut en ouvrant la fenêtre 'Customization' et en désactivant la personnalisation. Il faut redémarer QGIS.
 
 L'extension 'Plugin Builder' va nous aider en nous fournissant une trame pour construire notre extension. Dans le menu 'Plugins' sélectionner 'Manage and install plugins'. Installer l'extension 'Plugin Builder'. Installer aussi l'extension 'Plugin Reloader'.
 
@@ -181,13 +182,14 @@ Dans le menu 'Plugins' trouver l'entrée correspondant à votre plugin et clique
 
 Ouvrir le fichier maclasse.py. C'est là que se trouve la logique de votre extension.
 
-Lors du lancement de QGIS une instance de la classe définie dans maclasse.py est construite.Dit autrement, un objet python du type MaClasse est inititialisé en appelant la fonction `__init__` de la classe. On peut notament voir, à la fin de cette fonction, la création de l'interface graphique du plugin `self.dlg = ...` (cette interface n'est pas visible à ce moment.
+Lors du lancement de QGIS une instance de la classe définie dans maclasse.py est construite. Dit autrement, un objet python du type MaClasse est inititialisé en appelant la fonction `__init__` de la classe. On peut notament voir, à la fin de cette fonction, la création de l'interface graphique du plugin `self.dlg = ...` (cette interface n'est pas visible à ce moment.
 
 La fonction `initGui` est appelée par QGIS une fois que l'interface graphique de QGIS est en place mais avant que les couches soient chargées. On peut voir que, dans notre cas, on crée une action qui, une fois déclanchée, va appeler la fonction `run` de MaClasse (`self.action.triggered.connect(self.run)`). Cette action est ensuite rendue accessible dans la barre d'outil et dans le menu 'Plugins'.
 
-La fonction `run` montre la boîte de dialogue (`self.dlg.show`) et l'execute (`self.dlg.exec_()`).
+La fonction `run` montre la boîte de dialogue (`self.dlg.show`) et l'execute ( `self.dlg.exec_()` ).
 
 La fonction `unload` est appelée lorsque l'on désactive l'extension:
+
 * soit dans le gestonaire d'extensions, 
 * soit lors de la fermeture de QGIS, 
 * soit lors du rechargement de l'extension avec 'PluginReloader'.
@@ -195,9 +197,9 @@ La fonction `unload` est appelée lorsque l'on désactive l'extension:
 
 ## Réagir au clic sur la carte
 
-Nous souhaitons avoir un outil qui affiche et permet de modifier les dates de début et de fin du chantier sélectionné par un clic sur la carte. Pour celà nous utilisons un objet de type `QgsMapToolEmitPoint` qui va générer un signal à chaque clic sur la carte.
+Nous souhaitons avoir un outil qui affiche et permet de modifier les dates de début et de fin du chantier sélectionné par un clic sur la carte. Pour cela nous utilisons un objet de type `QgsMapToolEmitPoint` qui va générer un signal à chaque clic sur la carte.
 
-Commençons par configurer 'Plugin Reloader' pour qu'il recharge notre extension. Dans le menu 'Plugins'->'Plugin Reloader'->'Choose plugin to reload' et sélectioner notre extension pui 'OK'. Désormais, chaque fois que l'on appuie sur la touche F5 du clavier, la fonction `unload` de MaClasse est appelée, les fichiers .py décrivant notre extension sont relus, puis les fonction `__init__` et `initGui` sont appellées.
+Commençons par configurer 'Plugin Reloader' pour qu'il recharge notre extension. Dans le menu 'Plugins'->'Plugin Reloader'->'Choose plugin to reload' et sélectioner notre extension puis 'OK'. Désormais, chaque fois que l'on appuie sur la touche F5 du clavier, la fonction `unload` de MaClasse est appelée, les fichiers .py décrivant notre extension sont relus, puis les fonction `__init__` et `initGui` sont appellées.
 
 Ouvrir le fichier maclasse.py et ajouter à la fonction `__init__` les lignes suivantes. *Attention* python est sensible à l'indentation, il faut donc aligner les lignes ajoutées avec la dernière ligne de la fonction `__init__`:
 
@@ -206,6 +208,7 @@ Ouvrir le fichier maclasse.py et ajouter à la fonction `__init__` les lignes su
         self.clickTool = QgsMapToolEmitPoint(self.canvas)
         self.clickTool.canvasClicked.connect(self.handleMouseDown)
 ```
+
 Noter la connection du signal `canvasClicked` à la fonction `handleMouseDown` de MaClasse que nous allons devoir définir.
 
 Il faut aussi ajouter, après la ligne `from qgis.core import *` la ligne:
