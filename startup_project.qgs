@@ -2,43 +2,43 @@
 <qgis projectname="" version="2.0.1-Dufour">
     <title></title>
     <mapcanvas>
-        <units>degrees</units>
+        <units>meters</units>
         <extent>
-            <xmin>4.578845099009893</xmin>
-            <ymin>45.52839499999999617</ymin>
-            <xmax>5.26558490099010612</xmax>
-            <ymax>45.95280500000000501</ymax>
+            <xmin>1844237.56491404538974166</xmin>
+            <ymin>5173932.01362470537424088</ymin>
+            <xmax>1846484.65394744323566556</xmax>
+            <ymax>5175437.29254346340894699</ymax>
         </extent>
-        <projections>1</projections>
+        <projections>0</projections>
         <destinationsrs>
             <spatialrefsys>
-                <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
-                <srsid>3452</srsid>
-                <srid>4326</srid>
-                <authid>EPSG:4326</authid>
-                <description>WGS 84</description>
-                <projectionacronym>longlat</projectionacronym>
-                <ellipsoidacronym>WGS84</ellipsoidacronym>
-                <geographicflag>true</geographicflag>
+                <proj4>+proj=lcc +lat_1=45.25 +lat_2=46.75 +lat_0=46 +lon_0=3 +x_0=1700000 +y_0=5200000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</proj4>
+                <srsid>1765</srsid>
+                <srid>3946</srid>
+                <authid>EPSG:3946</authid>
+                <description>RGF93 / CC46</description>
+                <projectionacronym>lcc</projectionacronym>
+                <ellipsoidacronym>GRS80</ellipsoidacronym>
+                <geographicflag>false</geographicflag>
             </spatialrefsys>
         </destinationsrs>
     </mapcanvas>
-    <legend updateDrawingOrder="true" activeLayer="pvo_patrimoine_voirie_pvochantierperturbant20141106110159071">
+    <legend updateDrawingOrder="true" activeLayer="pvo_patrimoine_voirie_pvochantierperturbant20141106120324589">
         <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="pvo_patrimoine_voirie.pvochantierperturbant" showFeatureCount="0">
             <filegroup open="true" hidden="false">
-                <legendlayerfile isInOverview="0" layerid="pvo_patrimoine_voirie_pvochantierperturbant20141106110159071" visible="1"/>
+                <legendlayerfile isInOverview="0" layerid="pvo_patrimoine_voirie_pvochantierperturbant20141106120324589" visible="1"/>
             </filegroup>
         </legendlayer>
         <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="PlanGuide_VueEnsemble_625cm_CC46" showFeatureCount="0">
             <filegroup open="false" hidden="false">
-                <legendlayerfile isInOverview="0" layerid="PlanGuide_VueEnsemble_625cm_CC4620141106110140654" visible="1"/>
+                <legendlayerfile isInOverview="0" layerid="PlanGuide_VueEnsemble_625cm_CC4620141106120304962" visible="1"/>
             </filegroup>
         </legendlayer>
     </legend>
     <projectlayers layercount="2">
         <maplayer minimumScale="0" maximumScale="1e+08" type="raster" hasScaleBasedVisibilityFlag="0">
-            <id>PlanGuide_VueEnsemble_625cm_CC4620141106110140654</id>
-            <datasource>crs=EPSG:4326&amp;featureCount=10&amp;format=image/png&amp;layers=PlanGuide_VueEnsemble_625cm_CC46&amp;styles=&amp;url=https://download.data.grandlyon.com/wms/grandlyon</datasource>
+            <id>PlanGuide_VueEnsemble_625cm_CC4620141106120304962</id>
+            <datasource>crs=EPSG:3946&amp;featureCount=10&amp;format=image/png&amp;layers=PlanGuide_VueEnsemble_625cm_CC46&amp;styles=&amp;url=https://download.data.grandlyon.com/wms/grandlyon</datasource>
             <title></title>
             <abstract></abstract>
             <keywordList>
@@ -47,14 +47,14 @@
             <layername>PlanGuide_VueEnsemble_625cm_CC46</layername>
             <srs>
                 <spatialrefsys>
-                    <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
-                    <srsid>3452</srsid>
-                    <srid>4326</srid>
-                    <authid>EPSG:4326</authid>
-                    <description>WGS 84</description>
-                    <projectionacronym>longlat</projectionacronym>
-                    <ellipsoidacronym>WGS84</ellipsoidacronym>
-                    <geographicflag>true</geographicflag>
+                    <proj4>+proj=lcc +lat_1=45.25 +lat_2=46.75 +lat_0=46 +lon_0=3 +x_0=1700000 +y_0=5200000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</proj4>
+                    <srsid>1765</srsid>
+                    <srid>3946</srid>
+                    <authid>EPSG:3946</authid>
+                    <description>RGF93 / CC46</description>
+                    <projectionacronym>lcc</projectionacronym>
+                    <ellipsoidacronym>GRS80</ellipsoidacronym>
+                    <geographicflag>false</geographicflag>
                 </spatialrefsys>
             </srs>
             <customproperties>
@@ -72,7 +72,7 @@
             <blendMode>0</blendMode>
         </maplayer>
         <maplayer minimumScale="0" maximumScale="1e+08" minLabelScale="0" maxLabelScale="1e+08" geometry="Polygon" type="vector" hasScaleBasedVisibilityFlag="0" scaleBasedLabelVisibilityFlag="0">
-            <id>pvo_patrimoine_voirie_pvochantierperturbant20141106110159071</id>
+            <id>pvo_patrimoine_voirie_pvochantierperturbant20141106120324589</id>
             <datasource>./data/pvo_patrimoine_voirie.pvochantierperturbant.shp</datasource>
             <title></title>
             <abstract></abstract>
@@ -92,7 +92,7 @@
                     <geographicflag>false</geographicflag>
                 </spatialrefsys>
             </srs>
-            <provider encoding="UTF-8">ogr</provider>
+            <provider encoding="System">ogr</provider>
             <previewExpression></previewExpression>
             <vectorjoins/>
             <renderer-v2 symbollevels="0" type="singleSymbol">
@@ -100,7 +100,7 @@
                     <symbol alpha="1" type="fill" name="0">
                         <layer pass="0" class="SimpleFill" locked="0">
                             <prop k="border_width_unit" v="MM"/>
-                            <prop k="color" v="54,176,113,255"/>
+                            <prop k="color" v="2,133,15,255"/>
                             <prop k="color_border" v="0,0,0,255"/>
                             <prop k="offset" v="0,0"/>
                             <prop k="offset_unit" v="MM"/>
@@ -120,8 +120,8 @@
             <displayfield>descriptio</displayfield>
             <label>0</label>
             <labelattributes>
-                <label fieldname="" text="Label"/>
-                <family fieldname="" name="Sans"/>
+                <label fieldname="" text="Étiquette"/>
+                <family fieldname="" name="Droid Sans"/>
                 <size fieldname="" units="pt" value="12"/>
                 <bold fieldname="" on="0"/>
                 <italic fieldname="" on="0"/>
@@ -151,19 +151,19 @@
     <properties>
         <SpatialRefSys>
             <ProjectCrs type="QString">EPSG:4326</ProjectCrs>
-            <ProjectionsEnabled type="int">1</ProjectionsEnabled>
+            <ProjectCRSID type="int">1765</ProjectCRSID>
         </SpatialRefSys>
         <Paths>
             <Absolute type="bool">false</Absolute>
         </Paths>
         <Gui>
             <SelectionColorBluePart type="int">0</SelectionColorBluePart>
-            <CanvasColorGreenPart type="int">193</CanvasColorGreenPart>
-            <CanvasColorRedPart type="int">193</CanvasColorRedPart>
+            <CanvasColorGreenPart type="int">255</CanvasColorGreenPart>
+            <CanvasColorRedPart type="int">255</CanvasColorRedPart>
             <SelectionColorRedPart type="int">255</SelectionColorRedPart>
             <SelectionColorAlphaPart type="int">255</SelectionColorAlphaPart>
             <SelectionColorGreenPart type="int">255</SelectionColorGreenPart>
-            <CanvasColorBluePart type="int">193</CanvasColorBluePart>
+            <CanvasColorBluePart type="int">255</CanvasColorBluePart>
         </Gui>
         <PositionPrecision>
             <DecimalPlaces type="int">2</DecimalPlaces>

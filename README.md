@@ -288,8 +288,8 @@ Il nous faut maintenant modifier notre fonction `handleMouseDown` pour y affiche
         features = layer.getFeatures( QgsFeatureRequest(rectangle))
 
         for feature in features:
-            self.dlg.ui.lineEditDebut.setText(feature['debutchant'])
-            self.dlg.ui.lineEditFin.setText(feature['finchantie'])
+            self.dlg.lineEditDebut.setText(feature['debutchant'])
+            self.dlg.lineEditFin.setText(feature['finchantie'])
               
             # show the dialog
             self.dlg.show()
