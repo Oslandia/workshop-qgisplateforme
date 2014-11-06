@@ -151,7 +151,7 @@ Pour l'exemple, nous nous intéressons au même problème que précédement: l'u
 
 Commençons par repasser à l'interface par défaut en ouvrant la fenêtre 'Customization' et en désactivant la personnalisation. Il faut redémarer QGIS.
 
-L'extension 'Plugin Builder' va nous aider en nous fournissant une trame pour construire notre extension. Dans le menu 'Plugins' sélectionner 'Manage and install plugins'. Installer l'extension 'Plugin Builder'. Installer aussi l'extension 'Plugin Reloader'.
+L'extension 'Plugin Builder' va nous aider en nous fournissant une trame pour construire notre extension. Dans le menu 'Plugins' sélectionner 'Manage and install plugins'. Cliquer sur 'Parameters' et cocher l'option pour afficher les plugins expériementaux. Installer l'extension 'Plugin Builder'. Installer ensuite l'extension 'Plugin Reloader'.
 
 Fermer le gestionaire d'extensions. Dans le menu 'Plugins' choisir 'Plugin Builder'->'Plugin Builder'.
 
