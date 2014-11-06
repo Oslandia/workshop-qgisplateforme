@@ -14,7 +14,7 @@ Un shapefile des chantiers du Grand Lyon est disponible [ici](http://smartdata.g
 Une fois le fichier récupéré, il faut le décompresser.
 
 
-Charger les données dan QGIS
+Charger les données dans QGIS
 ----------------------------
 
 ### Fond de plan
