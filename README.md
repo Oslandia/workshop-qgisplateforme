@@ -1,7 +1,7 @@
 QGIS comme plateforme
 =====================
 
-QGIS, présente une interface avec un grand nombre de fonctionalités qui sont adapteés à des utilisateur SIG avancés. Cependant QGIS est aussi une plateforme qui permet de présenter au un autre type d'utilisateur, une interface adaptée à ses besoins.
+QGIS, présente une interface avec un grand nombre de fonctionnalités qui sont adaptées à des utilisateur SIG avancés. Cependant QGIS est aussi une plateforme qui permet de présenter au un autre type d'utilisateur, une interface adaptée à ses besoins.
 
 Dans ce court tutoriel, deux heures environ, nous faisons un tour d'horizon de quelques une des fonctionnalités de QGIS qui permettent ce type de personnalisation.
 
@@ -23,15 +23,15 @@ Ouvrir le menu 'Layers' et choisir 'Add WMS/WMTS Layer'. Dans la boite de dialog
 * Name: Grand Lyon
 * URL: https://download.data.grandlyon.com/wms/grandlyon
 
-Cliquer sur 'connect' et sellectioner la couche 'Plan guide du Grand Lyon'. Clicker sur 'Add' puis 'Close'.
+Cliquer sur 'connect' et sélectionner la couche 'Plan guide du Grand Lyon'. Cliquer sur 'Add' puis 'Close'.
 
 ### Couche vectorielle
 
-Ouvrir le menu 'Layers' et choisir 'Add Vector Layer', cliquer sur 'Browse' et selectionner le fichier téléchargé avec l'extension '.shp' contenant les chantiers du Grand Lyon.
+Ouvrir le menu 'Layers' et choisir 'Add Vector Layer', cliquer sur 'Browse' et sélectionner le fichier téléchargé avec l'extension '.shp' contenant les chantiers du Grand Lyon.
 
-Dans le paneau 'Layers' (à gauche par defaut) selectionner la couche vectorielle, cliquer avec le bouton de droite pour obtenir le menu contextuel et sélectionner les propriétés de la couche.
+Dans le panneau 'Layers' (à gauche par defaut) sélectionner la couche vectorielle, cliquer avec le bouton de droite pour obtenir le menu contextuel et sélectionner les propriétés de la couche.
 
-Dans la fenêtre des propriétés, sélectioner l'onglet 'Style'. Sélectionner le rectangle montrant le style courant (paneau gauche).
+Dans la fenêtre des propriétés, sélectionner l'onglet 'Style'. Sélectionner le rectangle montrant le style courant (panneau gauche).
 
 ![Fenêtre des propriétés de la couche](images/layers_properties.png)
 
@@ -43,26 +43,26 @@ Modifier le format des dates
 
 Les fonctions de QGIS sont accessibles en python, ce qui permet de créer des extensions ou d'effectuer des traitements sur les données. Nous souhaitons changer le format des dates et transformer jj/mm/aaaa en aaaa/mm/jj afin de pouvoir utiliser l'extension TimeManager qui ne supporte pas le format.
 
-Sélectioner la couche des chantiers, ouvrir le menu contextuel (click droit) et selectionner la table des attributs. Observer les champs 'debutchant' et 'finchantie'. Fermer la tables des attributs.
+Sélectionner la couche des chantiers, ouvrir le menu contextuel (click droit) et sélectionner la table des attributs. Observer les champs 'debutchant' et 'finchantie'. Fermer la tables des attributs.
 
 
 
-Dans le menu 'Plugins' sélectioner la console python. Dans la console pythin, entrer la commande:
+Dans le menu 'Plugins' sélectionner la console python. Dans la console python, entrer la commande:
 
 ```python
 iface.activeLayer()
 ```
     
-Qu'observez-vous? Sélectioner le fond de plan et relancer la commande (vous pouvez rappeler la dernière comande avec la touche flèche vers le haut).
+Qu'observez-vous? Sélectionner le fond de plan et relancer la commande (vous pouvez rappeler la dernière commande avec la touche flèche vers le haut).
 
-Selectionner à nouveau la couche de chantiers et lancer la commande:
+Sélectionner à nouveau la couche de chantiers et lancer la commande:
 
 ```python
 for feature in iface.activeLayer().getFeatures():
     print feature['debutchant']
 ```
 
-Nous utilisons la commande split() qui permet de découper une chaîne de charactère pour récupérer jour mois et années dans trois variables différentes, nous utilisons ensuite la fonction de formatage pour obtenir la date au format souhaité:
+Nous utilisons la commande split() qui permet de découper une chaîne de caractères pour récupérer jour mois et années dans trois variables différentes, nous utilisons ensuite la fonction de formatage pour obtenir la date au format souhaité:
 
 ```python
 for feature in iface.activeLayer().getFeatures():
@@ -83,7 +83,7 @@ for feature in iface.activeLayer().getFeatures():
 
 iface.activeLayer().commitChanges() # sauve les modifications de la couche et sort du mode édition
 ```
-Si aucune erreur ne survient, une liste de 'True' s'affiche, ce sont les valeurs de retour des fonction startEditing, changeAttributeValue et commitChanges. Si une erreur survient pendant l'execution, utiliser la fonction ```iface.activeLayer().rollBack()``` pour sortir du mode édition.
+Si aucune erreur ne survient, une liste de 'True' s'affiche, ce sont les valeurs de retour des fonction startEditing, changeAttributeValue et commitChanges. Si une erreur survient pendant l'exécution, utiliser la fonction ```iface.activeLayer().rollBack()``` pour sortir du mode édition.
 
 Ouvrir la table des attributs et vérifier que les modifications ont bien été faites.
 
@@ -186,7 +186,7 @@ Lors du lancement de QGIS une instance de la classe définie dans maclasse.py es
 
 La fonction `initGui` est appelée par QGIS une fois que l'interface graphique de QGIS est en place mais avant que les couches soient chargées. On peut voir que, dans notre cas, on crée une action qui, une fois déclanchée, va appeler la fonction `run` de MaClasse (`self.action.triggered.connect(self.run)`). Cette action est ensuite rendue accessible dans la barre d'outil et dans le menu 'Plugins'.
 
-La fonction `run` montre la boîte de dialogue (`self.dlg.show`) et l'execute ( `self.dlg.exec_()` ).
+La fonction `run` montre la boîte de dialogue (`self.dlg.show`) et l'execute (`self.dlg.exec_()`_ ).
 
 La fonction `unload` est appelée lorsque l'on désactive l'extension:
 
@@ -195,7 +195,7 @@ La fonction `unload` est appelée lorsque l'on désactive l'extension:
 * soit lors du rechargement de l'extension avec 'PluginReloader'.
 
 
-## Réagir au clic sur la carte
+## Réagir au clic sur la carte.
 
 Nous souhaitons avoir un outil qui affiche et permet de modifier les dates de début et de fin du chantier sélectionné par un clic sur la carte. Pour cela nous utilisons un objet de type `QgsMapToolEmitPoint` qui va générer un signal à chaque clic sur la carte.
 
@@ -220,7 +220,7 @@ from qgis.gui import *
 Car l'outil 'QgsMapToolEmitPoint' est défini dans les modules qgis relatifs à l'interface graphique (`gui`).
 
 
-Pour que notre outil `clickTool` devienne l'outil courant lorsque l'on déclanche l'action de notre extension, remplacer la fonction `run` par:
+Pour que notre outil `clickTool` devienne l'outil courant lorsque l'on déclenche l'action de notre extension, remplacer la fonction `run` par:
 
 ```python
     def run(self):
@@ -251,13 +251,13 @@ Recharger l'extension (touche F5) et tester.
 
 ## Modifier l'interface graphique
 
-Notre boîte de dialogue ne contient pour l'instant que deux boutons, nous souhaitons ajouter des champs éditables contenant la date de début et la date de fin du chantier. Pour celà nous alons modifier notre interface graphique avec Qt-Designer.
+Notre boîte de dialogue ne contient pour l'instant que deux boutons, nous souhaitons ajouter des champs éditables contenant la date de début et la date de fin du chantier. Pour cela nous allons modifier notre interface graphique avec Qt-Designer.
 
 Dans une fenêtre de commande, aller dans le répertoire $HOME/.qgsi2/python/plugins et lancer la commande:
 
     designer ui_workshopplugin.ui
 
-Ajouter les champs éditables et les étiquettes. Modifier le nom des champs éditables par lineEditDebut et lineEditFin pour pouvoir s'y référer plus facilement dans nos fonctions. Sauver et quiter.
+Ajouter les champs éditables et les étiquettes. Modifier le nom des champs éditables par lineEditDebut et lineEditFin pour pouvoir s'y référer plus facilement dans nos fonctions. Sauver et quitter.
 
 ![Modifier l'interface garphique](images/designer.png)
 
