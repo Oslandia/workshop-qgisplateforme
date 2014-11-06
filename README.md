@@ -23,7 +23,7 @@ Ouvrir le menu 'Layers' et choisir 'Add WMS/WMTS Layer'. Dans la boite de dialog
 * Name: Grand Lyon
 * URL: https://download.data.grandlyon.com/wms/grandlyon
 
-Cliquer sur 'connect' et sélectionner la couche 'Plan guide du Grand Lyon'. Cliquer sur 'Add' puis 'Close'.
+Cliquer sur 'connect' et sélectionner la couche 'Plan guide du Grand Lyon'. Modifier le système de coordonnées en cliquant sur 'Change...', sélectionner le système EPSG:3946 et cliquer sur 'OK'. Cliquer sur 'Add' puis 'Close'.
 
 ### Couche vectorielle
 
