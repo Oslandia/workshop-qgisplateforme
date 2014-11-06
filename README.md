@@ -131,6 +131,33 @@ Nous utilisons l'outil identify (flèche 1 sur la figure ci-dessous) pour ouvrir
 
 ![Ouverture du formulaire d'édition d'attributs avec l'outil 'Identify'.](images/custom_form_on_identify.png)
 
+### Formulaire personnalisé avec qt-designer
+
+Il est aussi possible de créer soi même un formulaire de saisie. Pour savoir le type de widget à utiliser dans le formulaire, ouvrir les propriétés de la couche des chantiers, dans l'onglet 'Fields' regarder la colonne 'Edit Widget'. Les champs 'debutchant' et 'finchantie' sont édités à l'aide de widgets de type 'Line edit'.
+
+Lancer la commande:
+
+```
+designer
+```
+
+Choisir un formulaire avec bouton.
+
+![Formulaire avec boutons](images/custom_form.png)
+
+Ajouter deux widget 'Line edit' et les nommer 'debutchan' et 'finchantie' en éditant le champ 'objectName', c'est par ce biais que QGIS reconnait dans quelle colonne il doit lire/écrire la valeur de ce widget. 
+
+Ajouter deux widgest 'Label' et éditer leur contenu pour indiquer à l'utilisateur le nom du champ.
+
+![Formulaire avec boutons](images/custom_form_fields.png)
+
+Sauver le fichier en le nommant 'custom_form.ui'.
+
+Dans QGIS, ouvrir les propriétés de la couche des chantiers.  Dans l'onglet 'Fields' selectionner 'Provide ui-file' comme 'Attribute editor layout', puis cliquer sur '...' pour sélectionner 'custom_form.ui'.
+
+Fermer les propriétés de la couche et sélectionner un chantier avec l'outil 'identify' pour tester le formulaire.
+
+
 ### Interface personnalisée
 
 Finalement nous pouvons dépouiller l'interface de tout ce qui n'intéresse pas l'utilisateur.
@@ -311,6 +338,9 @@ Recharger l'extension et tester.
 
 
 
+
+Adapter un peu plus l'interface à nos besoins
+---------------------------------------------
 
 
 
