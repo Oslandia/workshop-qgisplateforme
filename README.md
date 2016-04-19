@@ -243,9 +243,10 @@ Ouvrir le fichier maclasse.py et ajouter à la fonction `__init__` les lignes su
 
 Noter la connection du signal `canvasClicked` à la fonction `handleMouseDown` de MaClasse que nous allons devoir définir.
 
-Il faut aussi ajouter, après la ligne `from qgis.core import *` la ligne:
+Il faut aussi ajouter dans la liste des imports, les lignes :
 
 ```python
+from qgis.core import *
 from qgis.gui import *
 ```
 
