@@ -3,11 +3,12 @@
 /***************************************************************************
  WorkshopClassDialog
                                  A QGIS plugin
- a simple plugin for the workshop
+ A workshop for QGIS plugin
                              -------------------
-        begin                : 2014-11-06
-        copyright            : (C) 2014 by me
-        email                : me@wherever.org
+        begin                : 2016-04-19
+        git sha              : $Format:%H$
+        copyright            : (C) 2016 by Oslandia
+        email                : infos+qgis@oslandia.com
  ***************************************************************************/
 
 /***************************************************************************
@@ -20,14 +21,18 @@
  ***************************************************************************/
 """
 
-from PyQt4 import QtCore, QtGui
-from ui_workshopclass import Ui_WorkshopClass
-# create the dialog for zoom to point
+import os
+
+from PyQt4 import QtGui, uic
+
+FORM_CLASS, _ = uic.loadUiType(os.path.join(
+    os.path.dirname(__file__), 'WorkshopClass_dialog_base.ui'))
 
 
-class WorkshopClassDialog(QtGui.QDialog, Ui_WorkshopClass):
-    def __init__(self):
-        QtGui.QDialog.__init__(self)
+class WorkshopClassDialog(QtGui.QDialog, FORM_CLASS):
+    def __init__(self, parent=None):
+        """Constructor."""
+        super(WorkshopClassDialog, self).__init__(parent)
         # Set up the user interface from Designer.
         # After setupUI you can access any designer object by doing
         # self.<objectname>, and you can use autoconnect slots - see

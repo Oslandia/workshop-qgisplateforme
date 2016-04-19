@@ -288,7 +288,7 @@ Notre boîte de dialogue ne contient pour l'instant que deux boutons, nous souha
 
 Dans une fenêtre de commande, aller dans le répertoire $HOME/.qgsi2/python/plugins et lancer la commande:
 
-    designer ui_workshopplugin.ui
+    designer WorkshopClass_dialog_base.ui 
 
 Ajouter les champs éditables et les étiquettes. Modifier le nom des champs éditables par lineEditDebut et lineEditFin pour pouvoir s'y référer plus facilement dans nos fonctions. Sauver et quitter.
 
@@ -328,9 +328,9 @@ Il nous faut maintenant modifier notre fonction `handleMouseDown` pour y affiche
             if result == 1:
                 fid = feature.id()
                 field = feature.fieldNameIndex('debutchant')
-                layer.changeAttributeValue(fid, field, self.dlg.ui.lineEditDebut.text())
+                layer.dataProvider().changeAttributeValues({fid : {field: self.dlg.lineEditDebut.text()}})
                 field = feature.fieldNameIndex('finchantie')
-                layer.changeAttributeValue(fid, field, self.dlg.ui.lineEditFin.text())
+                layer.dataProvider().changeAttributeValues({fid : {field: self.dlg.lineEditFin.text()}})
 
         self.iface.actionPan().trigger()
 ```
