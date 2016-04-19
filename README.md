@@ -177,7 +177,7 @@ Développer un outil spécifique
 
 Comme nous l'avons vu avec l'extension 'TimeManager', QGIS offre la possibilité de développer des extensions dédiées à des tâches spécifique.
 
-Pour l'exemple, nous nous intéressons au même problème que précédemment: l'utilisateur veut sélectionner un chantier à la souris et éditer sa date de début et sa date de fin. Cette fois nous allons le résoudre en développant une extension simple.
+Pour l'exemple, nous nous intéressons au même problème que précédemment : l'utilisateur veut sélectionner un chantier à la souris et éditer sa date de début et sa date de fin. Cette fois nous allons le résoudre en développant une extension simple.
 
 Commençons par repasser à l'interface par défaut en ouvrant la fenêtre 'Customization' et en désactivant la personnalisation. Il faut redémarer QGIS.
 
@@ -186,8 +186,14 @@ L'extension 'Plugin Builder' va nous aider en nous fournissant une trame pour co
 Fermer le gestionaire d'extensions. Dans le menu 'Plugins' choisir 'Plugin Builder'->'Plugin Builder'.
 
 ![Fenêtre de création de plugin de Plugin Builder](images/plugin_builder.png)
+![Plugin Builder, étape 2](images/plugin_builder1.png)
+![Plugin Builder, étape 3](images/plugin_builder2.png)
+![Plugin Builder, étape 4](images/plugin_builder3.png)
+![Plugin Builder, étape 5](images/plugin_builder4.png)
 
-Lire la documentation (à gauche) et remplir les champs (à droite) en conséquence. Cliquer sur 'OK' et sellectionner le répertoire $HOME/.qgsi2/python/plugins pour sauver le plugin. Lire les explications dans le fenêtre de résultat qui s'affiche ensuite.
+Remplir les champs comme indiqué (évitez les accents dans les noms). Parcourir l'assistant en remplissant suivant les indications. À la fin, sélectionner le répertoire $HOME/.qgsi2/python/plugins pour sauver le plugin. Lire les explications dans le fenêtre de résultat qui s'affiche ensuite.
+
+![Plugin Builder, fenêtre de résultat](images/plugin_builder5.png)
 
 Ouvrir un gestionaire de fichier et explorer le répertoire $HOME/.qgsi2/python/plugins/LeNomDeMonPlugin.
 
@@ -195,13 +201,9 @@ Redémarrer QGIS.
 
 Ouvrir le gestionaire d'extensions et essayer d'activer votre extension. Lisez le message d'erreur ! 
 
-Ce plugin a besoin pour fonctionner d'un script python (extension .py) contenant l'interface graphique du plugin. Ce fichier est généré à partir du fichier de description de l'interface graphique (extension .ui) avec le programme pyuic4. Ouvrir une fenêtre de commande, aller dans le répertoire $HOME/.qgsi2/python/plugins/LeNomDeMonPlugin et executer la commande:
+Ce plugin a besoin d'un script python qui contient l'icone (icon.png). Ce fichier est appelé fichier ressource et est généré à partir d'un fichier qui liste les éléments à utiliser comme ressource (extension .qrc) à l'aide du programme pyrcc4:
 
-    pyuic4 interface_graphique.ui > ui_interface_graphique.py
-
-Ce plugin a aussi besoin d'un script python qui contient l'icone (incon.png). Ce fichier est appelé fichier ressource et est généré à partir d'un fichier qui liste les éléments à utiliser comme ressource (extension .qrc) à l'aide du programme pyrcc4:
-
-    pyrcc4 resources.qrc > resources_rc.py
+    pyrcc4 resources.qrc > resources.py
 
 Redémarrer QGIS. Ouvrir le gestionaire d'extensions et vérifier que votre extension est installée et activée. Observer la page de documentation de votre extension. Qu'y retrouve-t-in ?
 
@@ -210,13 +212,13 @@ Dans le menu 'Plugins' trouver l'entrée correspondant à votre plugin et clique
 
 ## Que se passe-t-il ?
 
-Ouvrir le fichier maclasse.py. C'est là que se trouve la logique de votre extension.
+Ouvrir le fichier maclasse.py ( elle peut avoir un autre nom selon vos entrées dans le Plugin Builder). C'est là que se trouve la logique de votre extension.
 
-Lors du lancement de QGIS une instance de la classe définie dans maclasse.py est construite. Dit autrement, un objet python du type MaClasse est inititialisé en appelant la fonction `__init__` de la classe. On peut notament voir, à la fin de cette fonction, la création de l'interface graphique du plugin `self.dlg = ...` (cette interface n'est pas visible à ce moment.
+Lors du lancement de QGIS une instance de la classe définie dans maclasse.py est construite. Dit autrement, un objet Python du type MaClasse est initialisé en appelant la fonction `__init__` de la classe. On peut notamment voir, à la fin de cette fonction, la création de l'interface graphique du plugin `self.dlg = ...` (cette interface n'est pas encore visible à ce moment).
 
-La fonction `initGui` est appelée par QGIS une fois que l'interface graphique de QGIS est en place mais avant que les couches soient chargées. On peut voir que, dans notre cas, on crée une action qui, une fois déclanchée, va appeler la fonction `run` de MaClasse (`self.action.triggered.connect(self.run)`). Cette action est ensuite rendue accessible dans la barre d'outil et dans le menu 'Plugins'.
+La fonction `initGui` est appelée par QGIS une fois que l'interface graphique de QGIS est en place mais avant que les couches ne soient chargées. On peut voir que, dans notre cas, on crée une action qui, une fois déclenchée, va appeler la fonction `run` de MaClasse (`self.action.triggered.connect(self.run)`). Cette action est ensuite rendue accessible dans la barre d'outil et dans le menu 'Plugins'.
 
-La fonction `run` montre la boîte de dialogue (`self.dlg.show`) et l'execute (`self.dlg.exec_()`_ ).
+La fonction `run` montre la boîte de dialogue (`self.dlg.show`) et l'exécute (`self.dlg.exec_()` ).
 
 La fonction `unload` est appelée lorsque l'on désactive l'extension:
 
@@ -229,9 +231,9 @@ La fonction `unload` est appelée lorsque l'on désactive l'extension:
 
 Nous souhaitons avoir un outil qui affiche et permet de modifier les dates de début et de fin du chantier sélectionné par un clic sur la carte. Pour cela nous utilisons un objet de type `QgsMapToolEmitPoint` qui va générer un signal à chaque clic sur la carte.
 
-Commençons par configurer 'Plugin Reloader' pour qu'il recharge notre extension. Dans le menu 'Plugins'->'Plugin Reloader'->'Choose plugin to reload' et sélectioner notre extension puis 'OK'. Désormais, chaque fois que l'on appuie sur la touche F5 du clavier, la fonction `unload` de MaClasse est appelée, les fichiers .py décrivant notre extension sont relus, puis les fonction `__init__` et `initGui` sont appellées.
+Commençons par configurer 'Plugin Reloader' pour qu'il recharge notre extension. Dans le menu 'Plugins'->'Plugin Reloader'->'Choose plugin to reload' et sélectionner notre extension puis 'OK'. Désormais, chaque fois que l'on appuie sur la touche F5 du clavier, la fonction `unload` de MaClasse est appelée, les fichiers .py décrivant notre extension sont relus, puis les fonction `__init__` et `initGui` sont appelées.
 
-Ouvrir le fichier maclasse.py et ajouter à la fonction `__init__` les lignes suivantes. *Attention* python est sensible à l'indentation, il faut donc aligner les lignes ajoutées avec la dernière ligne de la fonction `__init__`:
+Ouvrir le fichier maclasse.py et ajouter à la fonction `__init__` les lignes suivantes. *Attention* python est sensible à l'indentation, il faut donc aligner les lignes ajoutées avec la dernière ligne de la fonction `__init__` ( et ne pas mélanger espaces et tabulations, n'utilisez que des espaces) :
 
 ```python
         self.canvas = self.iface.mapCanvas()
@@ -289,11 +291,7 @@ Dans une fenêtre de commande, aller dans le répertoire $HOME/.qgsi2/python/plu
 
 Ajouter les champs éditables et les étiquettes. Modifier le nom des champs éditables par lineEditDebut et lineEditFin pour pouvoir s'y référer plus facilement dans nos fonctions. Sauver et quitter.
 
-![Modifier l'interface garphique](images/designer.png)
-
-Il faut ensuite régénerer le fichier ui_interface_graphique.py.
-
-    pyuic4 interface_graphique.ui > ui_interface_graphique.py
+![Modifier l'interface graphique](images/designer.png)
 
 Recharger l'extension dans QGIS (F5), tester.
 
@@ -337,24 +335,6 @@ Il nous faut maintenant modifier notre fonction `handleMouseDown` pour y affiche
 ```
 
 Recharger l'extension et tester.
-
-
-
-
-
-Adapter un peu plus l'interface à nos besoins
----------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
 
 
 
