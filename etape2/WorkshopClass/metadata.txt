@@ -1,38 +1,39 @@
-# This file contains metadata for your plugin. Beginning
-# with version 1.8 this is the preferred way to supply information about a
-# plugin. The current method of embedding metadata in __init__.py will
-# be supported until version 2.0
+# This file contains metadata for your plugin. Since 
+# version 2.0 of QGIS this is the proper way to supply 
+# information about a plugin. The old method of 
+# embedding metadata in __init__.py will 
+# is no longer supported since version 2.0.
 
-# This file should be included when you package your plugin.
-
-# Mandatory items:
-
+# This file should be included when you package your plugin.# Mandatory items:
 
 [general]
 name=workshop_plugin
 qgisMinimumVersion=2.0
-description=a simple plugin for the workshop
+description=A workshop for QGIS plugin
 version=0.1
-author=me
-email=me@wherever.org
+author=Oslandia
+email=infos+qgis@oslandia.com
 
-# end of mandatory metadata
+about=A plugin dedicated to a workshop class
 
-# Optional items:
+tracker=https://github.com/Oslandia/workshop-qgisplateforme
+repository=https://github.com/Oslandia/workshop-qgisplateforme
+# End of mandatory metadata
 
-# Uncomment the following line and add your changelog entries:
+# Recommended items:
+
+# Uncomment the following line and add your changelog:
 # changelog=
 
-# tags are comma separated with spaces allowed
-tags=
+# Tags are comma separated with spaces allowed
+tags=workshop, training
 
-homepage=
-tracker=
-repository=
+homepage=https://github.com/Oslandia/workshop-qgisplateforme
+category=Plugins
 icon=icon.png
 # experimental flag
-experimental=True
+experimental=False
 
-# deprecated flag (applies to the whole plugin, not just a single version
+# deprecated flag (applies to the whole plugin, not just a single version)
 deprecated=False
 

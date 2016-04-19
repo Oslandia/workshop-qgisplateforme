@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/plugins/workshopclass" >
+    <qresource prefix="/plugins/WorkshopClass" >
         <file>icon.png</file>
     </qresource>
 </RCC>

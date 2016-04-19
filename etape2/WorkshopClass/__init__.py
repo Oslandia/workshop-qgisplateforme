@@ -3,11 +3,12 @@
 /***************************************************************************
  WorkshopClass
                                  A QGIS plugin
- a simple plugin for the workshop
+ A workshop for QGIS plugin
                              -------------------
-        begin                : 2014-11-06
-        copyright            : (C) 2014 by me
-        email                : me@wherever.org
+        begin                : 2016-04-19
+        copyright            : (C) 2016 by Oslandia
+        email                : infos+qgis@oslandia.com
+        git sha              : $Format:%H$
  ***************************************************************************/
 
 /***************************************************************************
@@ -21,7 +22,14 @@
  This script initializes the plugin, making it known to QGIS.
 """
 
-def classFactory(iface):
-    # load WorkshopClass class from file WorkshopClass
-    from workshopclass import WorkshopClass
+
+# noinspection PyPep8Naming
+def classFactory(iface):  # pylint: disable=invalid-name
+    """Load WorkshopClass class from file WorkshopClass.
+
+    :param iface: A QGIS interface instance.
+    :type iface: QgsInterface
+    """
+    #
+    from .WorkshopClass import WorkshopClass
     return WorkshopClass(iface)
