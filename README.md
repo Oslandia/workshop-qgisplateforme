@@ -19,6 +19,8 @@ Charger les données dans QGIS
 
 ### Fond de plan
 
+QGIS est une plateforme interopérable, et à ce sens peut ouvrir des flux provenant d'autres systèmes, en particulier des flux standardisés OGC. On peut ainsi bénéficier de ressources déjà existantes pour créer plus simplement notre application.
+
 Ouvrir le menu 'Layers' et choisir 'Add WMS/WMTS Layer'. Dans la boite de dialogue cliquer sur 'new' et informer les champs suivants:
 * Name: Grand Lyon
 * URL: https://download.data.grandlyon.com/wms/grandlyon
@@ -35,25 +37,25 @@ Dans la fenêtre des propriétés, sélectionner l'onglet 'Style'. Sélectionner
 
 ![Fenêtre des propriétés de la couche](images/layers_properties.png)
 
-Changez le style pour avoir des polygone blancs avec un contour rouge de 1.5 mm. Fermer la fenêtre en cliquant sur 'OK'.
+Changez le style pour avoir des polygones blancs avec un contour rouge de 1.5 mm. Fermer la fenêtre en cliquant sur 'OK'.
 
 
 Modifier le format des dates
 ----------------------------
 
-Les fonctions de QGIS sont accessibles en python, ce qui permet de créer des extensions ou d'effectuer des traitements sur les données. Nous souhaitons changer le format des dates et transformer jj/mm/aaaa en aaaa/mm/jj afin de pouvoir utiliser l'extension TimeManager qui ne supporte pas le format.
+Les fonctions de QGIS sont accessibles en Python, ce qui permet de créer des extensions ou d'effectuer des traitements sur les données. Nous souhaitons changer le format des dates et transformer jj/mm/aaaa en aaaa/mm/jj afin de pouvoir utiliser l'extension TimeManager qui ne supporte pas le format initial.
 
-Sélectionner la couche des chantiers, ouvrir le menu contextuel (click droit) et sélectionner la table des attributs. Observer les champs 'debutchant' et 'finchantie'. Fermer la tables des attributs.
+Sélectionner la couche des chantiers, ouvrir le menu contextuel (clic droit) et sélectionner la table des attributs. Observer les champs 'debutchant' et 'finchantie'. Fermer la tables des attributs.
 
 
 
-Dans le menu 'Plugins' sélectionner la console python. Dans la console python, entrer la commande:
+Dans le menu 'Plugins' sélectionner la console Python. Dans la console Python, entrer la commande:
 
 ```python
 iface.activeLayer()
 ```
     
-Qu'observez-vous? Sélectionner le fond de plan et relancer la commande (vous pouvez rappeler la dernière commande avec la touche flèche vers le haut).
+Qu'observez-vous ? Sélectionner le fond de plan et relancer la commande (vous pouvez rappeler la dernière commande avec la touche flèche vers le haut).
 
 Sélectionner à nouveau la couche de chantiers et lancer la commande:
 
@@ -67,7 +69,7 @@ Nous utilisons la commande split() qui permet de découper une chaîne de caract
 ```python
 for feature in iface.activeLayer().getFeatures():
     [jour, mois, annee] = feature['debutchant'].split('/')
-    print "%s/%s/%s"%(annee, mois, jour)
+    print "%s/%s/%s" % (annee, mois, jour)
 ```
 
 
@@ -83,6 +85,7 @@ for feature in iface.activeLayer().getFeatures():
 
 iface.activeLayer().commitChanges() # sauve les modifications de la couche et sort du mode édition
 ```
+
 Si aucune erreur ne survient, une liste de 'True' s'affiche, ce sont les valeurs de retour des fonction startEditing, changeAttributeValue et commitChanges. Si une erreur survient pendant l'exécution, utiliser la fonction ```iface.activeLayer().rollBack()``` pour sortir du mode édition.
 
 Ouvrir la table des attributs et vérifier que les modifications ont bien été faites.
@@ -95,7 +98,7 @@ L'extension TimeManager
 
 Dans le menu 'Plugins' sélectionner 'Manage and install plugins'. Dans le champ 'Search' taper 'Time', sélectionner le plugin 'TimeManager' lisez la description du plugin en portant une attention particulière aux différents éléments présents (Titre, auteur etc.). Cliquer sur 'Install Plugin' puis sur 'Close'.
 
-Dans le paneau 'Time Manager', cliquer sur 'Settings' et dans la fenètre 'Time manager settings' cliquer sur 'Add Layer' puis renseigner les champs :
+Dans le panneau 'Time Manager', cliquer sur 'Settings' et dans la fenètre 'Time manager settings' cliquer sur 'Add Layer' puis renseigner les champs :
 * Start Time : debutchant
 * End Time : finchantie
 puis cliquer sur 'OK'.
@@ -110,9 +113,9 @@ Ouvrir la table attributaire. Qu'observez-vous ? Ouvrir les propriétés de la c
 Adapter l'interface à nos besoins
 ---------------------------------
 
-QGIS présente une interface avec un grand nombre de fonctionalités qui est adaptée à des utilisateurs SIG avancés. Cependant QGIS est aussi une plateforme qui permet de présenter à un autre type d'utilisateur une interface adaptée à ses besoins.
+QGIS présente une interface avec un grand nombre de fonctionalités qui est adaptée à des utilisateurs SIG avancés. Cependant QGIS est aussi une plateforme qui permet de présenter à d'autres types d'utilisateur une interface adaptée à ses besoins.
 
-Supposons que l'utilisateur ne s'intéresse qu'à la date de début et la date de fin du chantier. Ce utilisateur souhaite:
+Supposons que l'utilisateur ne s'intéresse qu'à la date de début et la date de fin du chantier. Ce utilisateur souhaite :
 * naviguer sur la carte, 
 * choisir un chantier avec la souris
 * modifier la date de début et la date de fin
@@ -127,7 +130,7 @@ Ouvrir les propriétés de la couche des chantiers.
 
 Aller dans l'onglet 'Fields' et sélectionner 'Drag and drop designer' comme type d'éditeur d'attributs. Créer un onglet intitulé Début/Fin et ajouter les champs 'debutchant' et 'finchantie'. Cliquer sur 'OK'.
 
-Nous utilisons l'outil identify (flèche 1 sur la figure ci-dessous) pour ouvrir automatiquement notre formulaire lorsque l'utilsateur clique sur une géométrie (flèche 3). Il suffit de passer en mode édition (flèche 4) pour pouvoir modifier les valeurs.
+Nous utilisons l'outil identify (flèche 1 sur la figure ci-dessous) pour ouvrir automatiquement notre formulaire lorsque l'utilisateur clique sur une géométrie (flèche 3). Il suffit de passer en mode édition (flèche 4) pour pouvoir modifier les valeurs.
 
 ![Ouverture du formulaire d'édition d'attributs avec l'outil 'Identify'.](images/custom_form_on_identify.png)
 
@@ -164,7 +167,7 @@ Finalement nous pouvons dépouiller l'interface de tout ce qui n'intéresse pas 
 
 Dans le menu 'Settings', choisir 'Customization'. Activer la personnalisation (checkbox en haut à gauche) et désactiver les éléments qui ne vous semblent pas nécessaires à la tâche. 
 
-*Attention* conserver le menu 'Settings' qui nous permettra de retrouver l'interface innitiale par la suite, conserver aussi l'outil 'Identify', le bouton pour passer en mode édition et le bouton 'Pan'. 
+*Attention* conserver le menu 'Settings' qui nous permettra de retrouver l'interface initiale par la suite, conserver aussi l'outil 'Identify', le bouton pour passer en mode édition et le bouton 'Pan'. 
 
 Cliquer sur 'OK', quiter QGIS puis le démarrer de nouveau.
 
@@ -174,11 +177,11 @@ Développer un outil spécifique
 
 Comme nous l'avons vu avec l'extension 'TimeManager', QGIS offre la possibilité de développer des extensions dédiées à des tâches spécifique.
 
-Pour l'exemple, nous nous intéressons au même problème que précédement: l'utilisateur veut sélectionner un chantier à la souris et éditer sa date de début et sa date de fin. Cette fois nous allons le résoudre en développant une extension simple.
+Pour l'exemple, nous nous intéressons au même problème que précédemment: l'utilisateur veut sélectionner un chantier à la souris et éditer sa date de début et sa date de fin. Cette fois nous allons le résoudre en développant une extension simple.
 
 Commençons par repasser à l'interface par défaut en ouvrant la fenêtre 'Customization' et en désactivant la personnalisation. Il faut redémarer QGIS.
 
-L'extension 'Plugin Builder' va nous aider en nous fournissant une trame pour construire notre extension. Dans le menu 'Plugins' sélectionner 'Manage and install plugins'. Cliquer sur 'Parameters' et cocher l'option pour afficher les plugins expériementaux. Installer l'extension 'Plugin Builder'. Installer ensuite l'extension 'Plugin Reloader'.
+L'extension 'Plugin Builder' va nous aider en nous fournissant une trame pour construire notre extension. Dans le menu 'Plugins' sélectionner 'Manage and install plugins'. Cliquer sur 'Parameters' et cocher l'option pour afficher les plugins expérimentaux. Installer l'extension 'Plugin Builder'. Installer ensuite l'extension 'Plugin Reloader'.
 
 Fermer le gestionaire d'extensions. Dans le menu 'Plugins' choisir 'Plugin Builder'->'Plugin Builder'.
 
